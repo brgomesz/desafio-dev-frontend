@@ -1,0 +1,54 @@
+.card-previsao {
+    height: 50%;
+    width: 50%;
+    background-color: white;
+    border-radius: 22px;
+    margin-top: 10%;
+  }
+  
+  .card-previsao h1 {
+    text-align: center;
+    margin-top: 10%;
+  }
+  
+  .input-cidade input {
+    height: 26px;
+    width: 70%;
+    border: 3px solid black;
+  }
+  
+  .input-cidade {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .card-previsao {
+      height: 40%;
+      width: 90%;
+      border-radius: 15px;
+      margin-top: 30%;
+    }
+    .card-previsao h1 {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 10%;
+    }
+    .input-cidade input {
+      height: 25px;
+      width: 70%;
+      border: 3px solid black;
+    }
+  
+    .input-cidade {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  
