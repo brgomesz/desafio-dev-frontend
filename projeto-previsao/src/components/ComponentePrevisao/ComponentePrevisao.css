@@ -48,10 +48,17 @@
    .dropdown :hover  {
     background-color: #d3d3d3;
   }
+
+  .resultados{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   
   @media (max-width: 568px) {
     .card-previsao {
-      height: 40%;
+      height: 70%;
       width: 90%;
       border-radius: 15px;
       margin-top: 30%;
@@ -98,5 +105,35 @@
        .dropdown :hover  {
         background-color: #d3d3d3;
       }
+
+      .resultados{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .resultado{
+        margin-bottom: 10px;
+      }
+
+      .resultado-cidade,
+      .resultado-temperatura-atual,
+      .resultado-temperatura-maxima,
+      .resultado-temperatura-minima{
+
+      }
+
+      .resultado-cidade{
+        padding-top: 10px;
+        font-weight: 700;
+        font-size: 25px;
+      }
+
+
+
+
+
+
   }
   

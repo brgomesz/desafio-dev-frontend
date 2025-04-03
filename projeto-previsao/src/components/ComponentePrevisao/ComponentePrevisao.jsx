@@ -20,20 +20,25 @@ function ComponentePrevisao() {
       const data = await response.json();
       const cidadesUnicas = data.geonames.filter(
         (cidade, index, self) =>
-          index === self.findIndex((c) => c.name.toLowerCase() === cidade.name.toLowerCase())
+          index ===
+          self.findIndex(
+            (c) => c.name.toLowerCase() === cidade.name.toLowerCase()
+          )
       );
       setSugestoes(cidadesUnicas);
-      setIndiceSelecionado(0); 
+      setIndiceSelecionado(0);
       setDropdownVisivel(true);
     } catch (error) {
       console.error("Erro ao buscar sugestões:", error.message);
     }
   };
-  
+
   const handleKeyDown = (e) => {
     if (dropdownVisivel && sugestoes.length > 0) {
       if (e.key === "ArrowDown") {
-        setIndiceSelecionado((prev) => Math.min(prev + 1, sugestoes.length - 1));
+        setIndiceSelecionado((prev) =>
+          Math.min(prev + 1, sugestoes.length - 1)
+        );
       } else if (e.key === "ArrowUp") {
         setIndiceSelecionado((prev) => Math.max(prev - 1, 0));
       } else if (e.key === "Enter") {
@@ -104,14 +109,17 @@ function ComponentePrevisao() {
         )}
       </div>
       {dadosClima && (
-        <div>
-           {dadosClima.name}
-
-
-
-          <p>Temperatura Atual: {dadosClima.main.temp}°C</p>
-          <p>Mínima: {dadosClima.main.temp_min}°C</p>
-          <p>Máxima: {dadosClima.main.temp_max}°C</p>
+        <div className="resultados">
+          <div className="resultado resultado-cidade">{dadosClima.name}</div>
+          <div className="resultado resultado-temperatura-atual">
+            <p>Temperatura Atual: {dadosClima.main.temp}°C</p>
+          </div>
+          <div className="resultado resultado-temperatura-maxima">
+            <p>Máxima: {dadosClima.main.temp_max}°C</p>
+          </div>
+          <div className="resultado resultado-temperatura-minima">
+            <p>Mínima: {dadosClima.main.temp_min}°C</p>
+          </div>
         </div>
       )}
     </div>
