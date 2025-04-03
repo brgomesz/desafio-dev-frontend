@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./ComponentePrevisao.css";
+import LocationPinIcon from "@mui/icons-material/LocationPin";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function ComponentePrevisao() {
   const [cidade, setCidade] = useState("");
@@ -110,15 +113,23 @@ function ComponentePrevisao() {
       </div>
       {dadosClima && (
         <div className="resultados">
-          <div className="resultado resultado-cidade">{dadosClima.name}</div>
+          <div className="resultado resultado-cidade">
+            {" "}
+            <LocationPinIcon className="LocationPinIcon" /> {dadosClima.name}
+          </div>
           <div className="resultado resultado-temperatura-atual">
-            <p>Temperatura Atual: {dadosClima.main.temp}°C</p>
+            <p>{Math.round(dadosClima.main.temp)}°C</p>
           </div>
-          <div className="resultado resultado-temperatura-maxima">
-            <p>Máxima: {dadosClima.main.temp_max}°C</p>
-          </div>
-          <div className="resultado resultado-temperatura-minima">
-            <p>Mínima: {dadosClima.main.temp_min}°C</p>
+
+          <div className="resultado resultado-temperaturas-max-min">
+            <p>
+              <KeyboardArrowUpIcon /> {Math.round(dadosClima.main.temp_max)}°C
+            </p>
+
+            <p>
+              <KeyboardArrowDownIcon />
+              {Math.round(dadosClima.main.temp_min)}°C
+            </p>
           </div>
         </div>
       )}

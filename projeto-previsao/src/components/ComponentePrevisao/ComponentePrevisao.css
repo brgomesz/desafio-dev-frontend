@@ -1,9 +1,9 @@
 .card-previsao {
-    height: 50%;
+    height: 80%;
     width: 50%;
     background-color: white;
     border-radius: 22px;
-    margin-top: 10%;
+    margin-top: 3%;
   }
   
   .card-previsao h1 {
@@ -119,19 +119,31 @@
 
       .resultado-cidade,
       .resultado-temperatura-atual,
-      .resultado-temperatura-maxima,
-      .resultado-temperatura-minima{
+      .resultado-temperaturas-max-min{
 
       }
 
       .resultado-cidade{
-        padding-top: 10px;
+        padding-top: 30px;
         font-weight: 700;
         font-size: 25px;
       }
 
+      .resultado-temperatura-atual{
+        font-size: 40px;
+        padding: 25px 0px;
+        
+      }
 
+      .LocationPinIcon{
+        color:red;
+        font-size: large;
+      }
 
+      .resultado-temperaturas-max-min{
+        display: flex;
+        gap:30px
+      }
 
 
 
