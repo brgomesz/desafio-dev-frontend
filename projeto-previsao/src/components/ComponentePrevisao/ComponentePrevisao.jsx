@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./ComponentePrevisao.css";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import WbTwilightIcon from "@mui/icons-material/WbTwilight";
+import ModeNightIcon from "@mui/icons-material/ModeNight";
+import AirRoundedIcon from "@mui/icons-material/AirRounded";
+import WaterDropRoundedIcon from "@mui/icons-material/WaterDropRounded";
 
 function ComponentePrevisao() {
   const [cidade, setCidade] = useState("");
@@ -120,16 +124,47 @@ function ComponentePrevisao() {
           <div className="resultado resultado-temperatura-atual">
             <p>{Math.round(dadosClima.main.temp)}°C</p>
           </div>
+          <div className="resultado-temperaturas">
+            <div className="resultado resultado-temperaturas-max">
+              <p>
+                <ArrowUpwardIcon style={{ color: "red" }} />{" "}
+                {Math.round(dadosClima.main.temp_max)}°C
+              </p>
+            </div>
+            <div className="resultado resultado-temperaturas-min">
+              <p>
+                <ArrowDownwardIcon style={{ color: "blue" }} />
+                {Math.round(dadosClima.main.temp_min)}°C
+              </p>
+            </div>
+          </div>
+          <div className="informacoes-complementares">
+            <div className="horarios">
+              <div>
+                <WbTwilightIcon style={{ color: "yellow" }} />
+                {new Date(dadosClima.sys.sunrise * 1000).toLocaleTimeString(
+                  [],
+                  { hour: "2-digit", minute: "2-digit" }
+                )}
+              </div>
+              <div>
+                <ModeNightIcon style={{ color: "white" }} />
+                {new Date(dadosClima.sys.sunset * 1000).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </div>
+            </div>
 
-          <div className="resultado resultado-temperaturas-max-min">
-            <p>
-              <KeyboardArrowUpIcon /> {Math.round(dadosClima.main.temp_max)}°C
-            </p>
-
-            <p>
-              <KeyboardArrowDownIcon />
-              {Math.round(dadosClima.main.temp_min)}°C
-            </p>
+            <div className="vento-umidade">
+              <div>
+                <AirRoundedIcon />
+                {dadosClima.wind.speed} m/s
+              </div>
+              <div>
+                <WaterDropRoundedIcon /> {dadosClima.main.humidity}%
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -6,7 +6,7 @@ function App() {
   return (
     <div
       style={{
-        backgroundColor: "#00A8FF",
+        backgroundColor: "#dfe985",
         height: "100vh",
         display: "flex",
         justifyContent: "center",
