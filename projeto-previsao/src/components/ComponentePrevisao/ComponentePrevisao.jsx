@@ -121,21 +121,23 @@ function ComponentePrevisao() {
             {" "}
             <LocationPinIcon className="LocationPinIcon" /> {dadosClima.name}
           </div>
-          <div className="resultado resultado-temperatura-atual">
-            <p>{Math.round(dadosClima.main.temp)}°C</p>
-          </div>
-          <div className="resultado-temperaturas">
-            <div className="resultado resultado-temperaturas-max">
-              <p>
-                <ArrowUpwardIcon style={{ color: "red" }} />{" "}
-                {Math.round(dadosClima.main.temp_max)}°C
-              </p>
+          <div className="temperaturas">
+            <div className="resultado resultado-temperatura-atual">
+              <p>{Math.round(dadosClima.main.temp)}°C</p>
             </div>
-            <div className="resultado resultado-temperaturas-min">
-              <p>
-                <ArrowDownwardIcon style={{ color: "blue" }} />
-                {Math.round(dadosClima.main.temp_min)}°C
-              </p>
+            <div className="resultado-temperaturas">
+              <div className="resultado resultado-temperaturas-max">
+                <p>
+                  {/* <ArrowUpwardIcon style={{ color: "red" }} />{" "} */}
+                  {Math.round(dadosClima.main.temp_max)}°C
+                </p>
+              </div>
+              <div className="resultado resultado-temperaturas-min">
+                <p>
+                  {/* <ArrowDownwardIcon style={{ color: "blue" }} /> */}
+                  {Math.round(dadosClima.main.temp_min)}°C
+                </p>
+              </div>
             </div>
           </div>
           <div className="informacoes-complementares">
