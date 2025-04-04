@@ -14,7 +14,7 @@
 .input-cidade input {
   height: 26px;
   width: 70%;
-  border: 3px solid black;
+  
 }
 
 .input-cidade {
@@ -133,6 +133,19 @@
   margin-top: 20px;
 }
 
+.autocomplete{
+  width: 70%;
+}
+
+.input-autocomplete{
+  background-color: white;
+}
+
+.botao-buscar{
+  width: 50px;
+  height: 50px;
+}
+
 @media (max-width: 568px) {
   .card-previsao {
     height: 77%;
@@ -148,8 +161,8 @@
   .input-cidade input {
     height: 25px;
     width: 70%;
-    border: 3px solid black;
   }
+
 
   .input-cidade {
     margin-top: 20px;
@@ -267,5 +280,18 @@
 
   .temperaturas{
     display: flex;
+  }
+
+  .autocomplete{
+    width: 70%;
+  }
+
+  .input-autocomplete{
+    background-color: white;
+  }
+
+  .botao-buscar{
+    width: 50px;
+    height: 50px;
   }
 }

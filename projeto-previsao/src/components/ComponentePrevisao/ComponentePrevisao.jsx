@@ -9,8 +9,12 @@ import AirRoundedIcon from "@mui/icons-material/AirRounded";
 import WaterDropRoundedIcon from "@mui/icons-material/WaterDropRounded";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import CloudIcon from "@mui/icons-material/Cloud";
-import AcUnitIcon from "@mui/icons-material/AcUnit"; 
+import AcUnitIcon from "@mui/icons-material/AcUnit";
 import GrainIcon from "@mui/icons-material/Grain";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import Button from '@mui/material/Button';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 function ComponentePrevisao() {
   const [cidade, setCidade] = useState("");
@@ -19,10 +23,34 @@ function ComponentePrevisao() {
   const [indiceSelecionado, setIndiceSelecionado] = useState(0);
   const [dropdownVisivel, setDropdownVisivel] = useState(false);
 
+  // const buscarSugestoes = async (input) => {
+  //   if (!input) {
+  //     setSugestoes([]);
+  //     setDropdownVisivel(false);
+  //     return;
+  //   }
+  //   const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     const cidadesUnicas = data.geonames.filter(
+  //       (cidade, index, self) =>
+  //         index ===
+  //         self.findIndex(
+  //           (c) => c.name.toLowerCase() === cidade.name.toLowerCase()
+  //         )
+  //     );
+  //     setSugestoes(cidadesUnicas);
+  //     setIndiceSelecionado(0);
+  //     setDropdownVisivel(true);
+  //   } catch (error) {
+  //     console.error("Erro ao buscar sugestões:", error.message);
+  //   }
+  // };
+
   const buscarSugestoes = async (input) => {
     if (!input) {
       setSugestoes([]);
-      setDropdownVisivel(false);
       return;
     }
     const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
@@ -37,8 +65,6 @@ function ComponentePrevisao() {
           )
       );
       setSugestoes(cidadesUnicas);
-      setIndiceSelecionado(0);
-      setDropdownVisivel(true);
     } catch (error) {
       console.error("Erro ao buscar sugestões:", error.message);
     }
@@ -81,13 +107,18 @@ function ComponentePrevisao() {
   };
 
   const obterIconeClima = () => {
-    if (!dadosClima || !dadosClima.weather || !dadosClima.weather[0]) return null;
+    if (!dadosClima || !dadosClima.weather || !dadosClima.weather[0])
+      return null;
     const descricao = dadosClima.weather[0].main.toLowerCase();
-    if (descricao.includes("clear")) return <WbSunnyIcon style={{ color: "orange", fontSize: 50 }} />;
-    if (descricao.includes("cloud")) return <CloudIcon style={{ color: "gray", fontSize: 50 }} />;
-    if (descricao.includes("rain")) return <GrainIcon style={{ color: "blue", fontSize: 50 }} />;
-    if (descricao.includes("snow")) return <AcUnitIcon style={{ color: "lightblue", fontSize: 50 }} />;
-    return <CloudIcon style={{ color: "gray", fontSize: 50 }} />; 
+    if (descricao.includes("clear"))
+      return <WbSunnyIcon style={{ color: "orange", fontSize: 50 }} />;
+    if (descricao.includes("cloud"))
+      return <CloudIcon style={{ color: "gray", fontSize: 50 }} />;
+    if (descricao.includes("rain"))
+      return <GrainIcon style={{ color: "blue", fontSize: 50 }} />;
+    if (descricao.includes("snow"))
+      return <AcUnitIcon style={{ color: "lightblue", fontSize: 50 }} />;
+    return <CloudIcon style={{ color: "gray", fontSize: 50 }} />;
   };
 
   const selecionarCidade = (nome) => {
@@ -100,19 +131,30 @@ function ComponentePrevisao() {
     <div className="card-previsao">
       <h1>Digite o nome da cidade</h1>
       <div className="input-cidade">
-        <input
-          type="text"
-          placeholder="Digite a cidade"
+        <Autocomplete
+          className="autocomplete"
+          options={sugestoes.map((s) => s.name)}
           value={cidade}
-          onChange={(e) => {
-            setCidade(e.target.value);
-            buscarSugestoes(e.target.value);
+          onChange={(event, newValue) => {
+            setCidade(newValue);
           }}
-          onKeyDown={handleKeyDown}
-          onBlur={() => setDropdownVisivel(false)}
-          onFocus={() => setDropdownVisivel(true)}
+          onInputChange={(event, newInputValue) => {
+            buscarSugestoes(newInputValue);
+          }}
+          renderInput={(params) => (
+            <TextField
+              className="input-autocomplete"
+              {...params}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && cidade) {
+                  buscarClima();
+                }
+              }}
+            />
+          )}
         />
-        <button onClick={buscarClima}>🔎</button>
+
+        <Button className="botao-buscar" variant="contained" onClick={buscarClima}><SearchRoundedIcon/></Button>
         {dropdownVisivel && sugestoes.length > 0 && (
           <ul className="dropdown">
             {sugestoes.map((sugestao, index) => (
@@ -137,7 +179,7 @@ function ComponentePrevisao() {
           </div>
           <div className="temperaturas">
             <div className="resultado resultado-temperatura-atual">
-            {obterIconeClima()}
+              {obterIconeClima()}
               <p>{Math.round(dadosClima.main.temp)}°C</p>
             </div>
             <div className="resultado-temperaturas">
