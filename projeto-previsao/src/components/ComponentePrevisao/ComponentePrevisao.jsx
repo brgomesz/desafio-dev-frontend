@@ -140,12 +140,11 @@ function ComponentePrevisao({ setBackgroundClass }) {
     return <CloudIcon style={{ color: "gray", fontSize: 50 }} />;
   };
 
-
   const selecionarCidade = (nome) => {
     setCidade(nome);
-    setSugestoes([]); 
-    setDropdownVisivel(false); 
-    setMostrarSugestoes(false); 
+    setSugestoes([]);
+    setDropdownVisivel(false);
+    setMostrarSugestoes(false);
     buscarClima(nome);
   };
 
@@ -161,15 +160,17 @@ function ComponentePrevisao({ setBackgroundClass }) {
             setCidade(newValue);
           }}
           onInputChange={(event, newInputValue) => {
-            setCidade(newInputValue);
-            buscarSugestoes(newInputValue);
+            setCidade(newInputValue || ""); 
+            if (newInputValue) buscarSugestoes(newInputValue); 
           }}
+          
           renderInput={(params) => (
             <TextField
               className="input-autocomplete"
               {...params}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && cidade.trim() !== "") {
+                  e.preventDefault(); 
                   buscarClima();
                   setSugestoes([]);
                 }
@@ -199,7 +200,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
                 className={
                   indiceSelecionado === index ? "sugestao-selecionada" : ""
                 }
-                onMouseDown={() => selecionarCidade(sugestao.name)}
+                onClick={() => selecionarCidade(sugestao.name)}
               >
                 {sugestao.name}, {sugestao.countryName}
               </li>
@@ -227,16 +228,10 @@ function ComponentePrevisao({ setBackgroundClass }) {
             </div>
             <div className="resultado-temperaturas">
               <div className="resultado resultado-temperaturas-max">
-                <p>
-                  {/* <ArrowUpwardIcon style={{ color: "red" }} />{" "} */}
-                  {Math.round(dadosClima.main.temp_max)}°C
-                </p>
+                <p>{Math.round(dadosClima.main.temp_max)}°C</p>
               </div>
               <div className="resultado resultado-temperaturas-min">
-                <p>
-                  {/* <ArrowDownwardIcon style={{ color: "blue" }} /> */}
-                  {Math.round(dadosClima.main.temp_min)}°C
-                </p>
+                <p>{Math.round(dadosClima.main.temp_min)}°C</p>
               </div>
             </div>
           </div>
