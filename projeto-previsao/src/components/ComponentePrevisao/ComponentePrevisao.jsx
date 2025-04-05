@@ -161,8 +161,9 @@ function ComponentePrevisao({ setBackgroundClass }) {
           }}
           onInputChange={(event, newInputValue) => {
             setCidade(newInputValue || ""); 
-            if (newInputValue) buscarSugestoes(newInputValue); 
+            if (newInputValue?.trim() !== "") buscarSugestoes(newInputValue.trim()); // Normaliza entrada
           }}
+          
           
           renderInput={(params) => (
             <TextField
