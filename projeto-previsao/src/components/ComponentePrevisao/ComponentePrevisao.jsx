@@ -22,31 +22,13 @@ function ComponentePrevisao({ setBackgroundClass }) {
   const [sugestoes, setSugestoes] = useState([]);
   const [indiceSelecionado, setIndiceSelecionado] = useState(0);
   const [dropdownVisivel, setDropdownVisivel] = useState(false);
+  const [cardBackground, setCardBackground] = useState({
+    background: "linear-gradient(to top, #0080ff, #c3e3ff)",
+  });
+  const [informacoesBackground, setInformacoesBackground] = useState({
+    backgroundColor: "rgb(130, 167, 247)",
+  });
 
-  // const buscarSugestoes = async (input) => {
-  //   if (!input) {
-  //     setSugestoes([]);
-  //     setDropdownVisivel(false);
-  //     return;
-  //   }
-  //   const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
-  //   try {
-  //     const response = await fetch(url);
-  //     const data = await response.json();
-  //     const cidadesUnicas = data.geonames.filter(
-  //       (cidade, index, self) =>
-  //         index ===
-  //         self.findIndex(
-  //           (c) => c.name.toLowerCase() === cidade.name.toLowerCase()
-  //         )
-  //     );
-  //     setSugestoes(cidadesUnicas);
-  //     setIndiceSelecionado(0);
-  //     setDropdownVisivel(true);
-  //   } catch (error) {
-  //     console.error("Erro ao buscar sugestões:", error.message);
-  //   }
-  // };
 
   const buscarSugestoes = async (input) => {
     if (!input) {
@@ -101,11 +83,37 @@ function ComponentePrevisao({ setBackgroundClass }) {
       setDadosClima(data);
 
       const descricao = data.weather[0].main.toLowerCase();
-      if (descricao.includes("clear")) setBackgroundClass("ensolarado");
-      else if (descricao.includes("cloud")) setBackgroundClass("nublado");
-      else if (descricao.includes("rain")) setBackgroundClass("chuvoso");
-      else if (descricao.includes("snow")) setBackgroundClass("nevando");
-      else setBackgroundClass("padrao");
+      if (descricao.includes("clear")) {
+        setBackgroundClass("ensolarado");
+        setCardBackground({
+          background: "linear-gradient(to top, #0080ff, #c3e3ff)",
+        });
+        setInformacoesBackground({ backgroundColor: "rgb(130, 167, 247)" });
+      } else if (descricao.includes("cloud")) {
+        setBackgroundClass("nublado");
+        setCardBackground({
+          background: "linear-gradient(to top,rgb(121, 121, 121), #e0e0e0)",
+        });
+        setInformacoesBackground({ backgroundColor: "rgb(173, 173, 173)" });
+      } else if (descricao.includes("rain")) {
+        setBackgroundClass("chuvoso");
+        setCardBackground({
+          background: "linear-gradient(to top, #4a8ba0, #aecbd8)",
+        });
+        setInformacoesBackground({ backgroundColor: "rgb(100, 100, 100)" });
+      } else if (descricao.includes("snow")) {
+        setBackgroundClass("nevando");
+        setCardBackground({
+          background: "linear-gradient(to top, #d7eef5, #ffffff)",
+        });
+        setInformacoesBackground({ backgroundColor: "rgb(180, 180, 180)" });
+      } else {
+        setBackgroundClass("padrao");
+        setCardBackground({
+          background: "linear-gradient(to top, #f0f0f0, #ffffff)",
+        });
+        setInformacoesBackground({ backgroundColor: "rgb(130, 167, 247)" });
+      }
     } catch (error) {
       console.error(error.message);
       alert("Erro ao buscar dados: " + error.message);
@@ -134,7 +142,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
   };
 
   return (
-    <div className="card-previsao">
+    <div className="card-previsao" style={cardBackground}>
       <h1>Digite o nome da cidade</h1>
       <div className="input-cidade">
         <Autocomplete
@@ -168,7 +176,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
           onClick={() => {
             if (cidade.trim() !== "") {
               buscarClima();
-              setSugestoes([]); 
+              setSugestoes([]);
             }
           }}
         >
@@ -217,7 +225,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
               </div>
             </div>
           </div>
-          <div className="informacoes-complementares">
+          <div className="informacoes-complementares" style={informacoesBackground}>
             <div className="horarios">
               <div>
                 <WbTwilightIcon

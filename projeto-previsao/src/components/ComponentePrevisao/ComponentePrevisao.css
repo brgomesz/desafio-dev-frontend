@@ -1,7 +1,7 @@
 .card-previsao {
   height: 95%;
   width: 40%;
-  background: linear-gradient(to top, #0080ff, #c3e3ff); 
+  /* background: linear-gradient(to top, #0080ff, #c3e3ff);  */
   border-radius: 22px;
   margin-top: 1%;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
