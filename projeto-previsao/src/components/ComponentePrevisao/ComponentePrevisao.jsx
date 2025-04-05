@@ -13,16 +13,15 @@ import AcUnitIcon from "@mui/icons-material/AcUnit";
 import GrainIcon from "@mui/icons-material/Grain";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import Button from "@mui/material/Button";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
-function ComponentePrevisao({setBackgroundClass} ) {
+function ComponentePrevisao({ setBackgroundClass }) {
   const [cidade, setCidade] = useState("");
   const [dadosClima, setDadosClima] = useState(null);
   const [sugestoes, setSugestoes] = useState([]);
   const [indiceSelecionado, setIndiceSelecionado] = useState(0);
   const [dropdownVisivel, setDropdownVisivel] = useState(false);
-  
 
   // const buscarSugestoes = async (input) => {
   //   if (!input) {
@@ -106,13 +105,12 @@ function ComponentePrevisao({setBackgroundClass} ) {
       else if (descricao.includes("cloud")) setBackgroundClass("nublado");
       else if (descricao.includes("rain")) setBackgroundClass("chuvoso");
       else if (descricao.includes("snow")) setBackgroundClass("nevando");
-      else setBackgroundClass("padrao"); 
+      else setBackgroundClass("padrao");
     } catch (error) {
       console.error(error.message);
       alert("Erro ao buscar dados: " + error.message);
     }
   };
-
 
   const obterIconeClima = () => {
     if (!dadosClima || !dadosClima.weather || !dadosClima.weather[0])
@@ -147,6 +145,7 @@ function ComponentePrevisao({setBackgroundClass} ) {
             setCidade(newValue);
           }}
           onInputChange={(event, newInputValue) => {
+            setCidade(newInputValue);
             buscarSugestoes(newInputValue);
           }}
           renderInput={(params) => (
@@ -154,15 +153,28 @@ function ComponentePrevisao({setBackgroundClass} ) {
               className="input-autocomplete"
               {...params}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && cidade) {
+                if (e.key === "Enter" && cidade.trim() !== "") {
                   buscarClima();
+                  setSugestoes([]);
                 }
               }}
             />
           )}
         />
 
-        <Button className="botao-buscar" variant="contained" onClick={buscarClima}><SearchRoundedIcon/></Button>
+        <Button
+          className="botao-buscar"
+          variant="contained"
+          onClick={() => {
+            if (cidade.trim() !== "") {
+              buscarClima();
+              setSugestoes([]); 
+            }
+          }}
+        >
+          <SearchRoundedIcon />
+        </Button>
+
         {dropdownVisivel && sugestoes.length > 0 && (
           <ul className="dropdown">
             {sugestoes.map((sugestao, index) => (
@@ -208,14 +220,16 @@ function ComponentePrevisao({setBackgroundClass} ) {
           <div className="informacoes-complementares">
             <div className="horarios">
               <div>
-                <WbTwilightIcon style={{ color: "yellow", marginRight:"5px" }} />
+                <WbTwilightIcon
+                  style={{ color: "yellow", marginRight: "5px" }}
+                />
                 {new Date(dadosClima.sys.sunrise * 1000).toLocaleTimeString(
                   [],
                   { hour: "2-digit", minute: "2-digit" }
                 )}
               </div>
               <div>
-                <ModeNightIcon style={{ color: "white", marginRight:"5px" }} />
+                <ModeNightIcon style={{ color: "white", marginRight: "5px" }} />
                 {new Date(dadosClima.sys.sunset * 1000).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -225,11 +239,14 @@ function ComponentePrevisao({setBackgroundClass} ) {
 
             <div className="vento-umidade">
               <div>
-                <AirRoundedIcon style={{ color: "white", marginRight:"5px" }} />
+                <AirRoundedIcon
+                  style={{ color: "white", marginRight: "5px" }}
+                />
                 {dadosClima.wind.speed} m/s
               </div>
               <div>
-                <WaterDropRoundedIcon style={{ color: "white" }}/> {dadosClima.main.humidity}%
+                <WaterDropRoundedIcon style={{ color: "white" }} />{" "}
+                {dadosClima.main.humidity}%
               </div>
             </div>
           </div>
