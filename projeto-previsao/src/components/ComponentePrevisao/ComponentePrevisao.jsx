@@ -189,6 +189,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
               setSugestoes([]);
             }
           }}
+          data-testid="botao-buscar" 
         >
           <SearchRoundedIcon />
         </Button>

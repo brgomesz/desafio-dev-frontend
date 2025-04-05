@@ -18,7 +18,6 @@
 .input-cidade input {
   height: 26px;
   width: 70%;
-  
 }
 
 .input-cidade {
@@ -68,26 +67,25 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.temperaturas{
+.temperaturas {
   display: flex;
 }
 
-  .resultado-temperatura-atual {
-    font-size: 55px;
-    font-weight:500;
-    padding: 20px 0px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 10px;  
-  }
+.resultado-temperatura-atual {
+  font-size: 55px;
+  font-weight: 500;
+  padding: 20px 0px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 .LocationPinIcon {
   color: red;
   font-size: large;
 }
-
 
 .resultado-temperaturas {
   display: flex;
@@ -97,7 +95,7 @@
   padding-top: 23px;
 }
 
-.resultado-temperaturas-max{
+.resultado-temperaturas-max {
   padding-bottom: 5px;
   border-bottom: solid 1px black;
   color: white;
@@ -105,7 +103,7 @@
   font-weight: 700;
   text-align: center;
 }
-.resultado-temperaturas-min{
+.resultado-temperaturas-min {
   color: white;
   font-size: 19px;
   font-weight: 500;
@@ -117,9 +115,8 @@
   justify-content: space-between;
   width: 90%;
   color: white;
-  flex-direction: column;
+
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  
 }
 .horarios {
   display: flex;
@@ -128,40 +125,39 @@
   border-radius: 10px;
   width: 90%;
   color: white;
-  flex-direction: column;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);  
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .informacoes-complementares {
   width: 70%;
   background-color: rgb(130, 167, 247);
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   padding: 20px 10px;
   border-radius: 15px;
   margin-top: 20px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.autocomplete{
+.autocomplete {
   width: 70%;
 }
 
-.input-autocomplete{
+.input-autocomplete {
   background-color: white;
 }
 
-.botao-buscar{
+.botao-buscar {
   width: 50px;
   height: 50px;
 }
 
 .card-cidades-sugeridas {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
-
 
 @media (max-width: 568px) {
   .card-previsao {
@@ -181,7 +177,6 @@
     height: 25px;
     width: 70%;
   }
-
 
   .input-cidade {
     margin-top: 20px;
@@ -236,13 +231,13 @@
 
   .resultado-temperatura-atual {
     font-size: 55px;
-    font-weight:500;
+    font-weight: 500;
     padding: 20px 0px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     color: white;
     display: flex;
     align-items: center;
-    gap: 10px;  
+    gap: 10px;
   }
 
   .LocationPinIcon {
@@ -258,7 +253,7 @@
     padding-top: 23px;
   }
 
-  .resultado-temperaturas-max{
+  .resultado-temperaturas-max {
     padding-bottom: 5px;
     border-bottom: solid 1px black;
     color: white;
@@ -266,7 +261,7 @@
     font-weight: 700;
     text-align: center;
   }
-  .resultado-temperaturas-min{
+  .resultado-temperaturas-min {
     color: white;
     font-size: 19px;
     font-weight: 500;
@@ -281,7 +276,6 @@
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     flex-direction: row;
-    
   }
   .horarios {
     display: flex;
@@ -290,7 +284,7 @@
     border-radius: 10px;
     width: 90%;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);  
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     flex-direction: row;
   }
   .informacoes-complementares {
@@ -298,33 +292,33 @@
     background-color: rgb(130, 167, 247);
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     padding: 20px 10px;
     border-radius: 15px;
     margin-top: 20px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
 
-  .temperaturas{
+  .temperaturas {
     display: flex;
   }
 
-  .autocomplete{
+  .autocomplete {
     width: 70%;
   }
 
-  .input-autocomplete{
+  .input-autocomplete {
     background-color: white;
   }
 
-  .botao-buscar{
+  .botao-buscar {
     width: 50px;
     height: 50px;
   }
 
   .card-cidades-sugeridas {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
   }
 }
