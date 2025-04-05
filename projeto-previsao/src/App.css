@@ -1,5 +1,34 @@
-*{
-  margin:0px;
-  padding:0px;
-  font-family: 'Montserrat', sans-serif;
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.fundo-componente {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ensolarado {
+  background-image: url("../public/imagens/dia-ensolarado.jpg");
+}
+
+.nublado {
+  background-image: url("../public/imagens/dia-nublado.avif");
+}
+
+.chuvoso {
+  background-image: url("../public/imagens/dia-chuvoso.jpg");
+}
+
+.nevando {
+  background-image: url("../public/imagens/dia-nevando.jpg");
+}
+
+.padrao {
+  background-image: url("../public/imagens/dia-nublado.avif"); 
 }

@@ -16,12 +16,13 @@ import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
-function ComponentePrevisao() {
+function ComponentePrevisao({setBackgroundClass} ) {
   const [cidade, setCidade] = useState("");
   const [dadosClima, setDadosClima] = useState(null);
   const [sugestoes, setSugestoes] = useState([]);
   const [indiceSelecionado, setIndiceSelecionado] = useState(0);
   const [dropdownVisivel, setDropdownVisivel] = useState(false);
+  
 
   // const buscarSugestoes = async (input) => {
   //   if (!input) {
@@ -53,7 +54,7 @@ function ComponentePrevisao() {
       setSugestoes([]);
       return;
     }
-    const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
+    const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=anatrindade`;
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -99,12 +100,19 @@ function ComponentePrevisao() {
       }
       const data = await response.json();
       setDadosClima(data);
-      setDropdownVisivel(false);
+
+      const descricao = data.weather[0].main.toLowerCase();
+      if (descricao.includes("clear")) setBackgroundClass("ensolarado");
+      else if (descricao.includes("cloud")) setBackgroundClass("nublado");
+      else if (descricao.includes("rain")) setBackgroundClass("chuvoso");
+      else if (descricao.includes("snow")) setBackgroundClass("nevando");
+      else setBackgroundClass("padrao"); 
     } catch (error) {
       console.error(error.message);
       alert("Erro ao buscar dados: " + error.message);
     }
   };
+
 
   const obterIconeClima = () => {
     if (!dadosClima || !dadosClima.weather || !dadosClima.weather[0])
@@ -200,14 +208,14 @@ function ComponentePrevisao() {
           <div className="informacoes-complementares">
             <div className="horarios">
               <div>
-                <WbTwilightIcon style={{ color: "yellow" }} />
+                <WbTwilightIcon style={{ color: "yellow", marginRight:"5px" }} />
                 {new Date(dadosClima.sys.sunrise * 1000).toLocaleTimeString(
                   [],
                   { hour: "2-digit", minute: "2-digit" }
                 )}
               </div>
               <div>
-                <ModeNightIcon style={{ color: "white" }} />
+                <ModeNightIcon style={{ color: "white", marginRight:"5px" }} />
                 {new Date(dadosClima.sys.sunset * 1000).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -217,11 +225,11 @@ function ComponentePrevisao() {
 
             <div className="vento-umidade">
               <div>
-                <AirRoundedIcon />
+                <AirRoundedIcon style={{ color: "white", marginRight:"5px" }} />
                 {dadosClima.wind.speed} m/s
               </div>
               <div>
-                <WaterDropRoundedIcon /> {dadosClima.main.humidity}%
+                <WaterDropRoundedIcon style={{ color: "white" }}/> {dadosClima.main.humidity}%
               </div>
             </div>
           </div>

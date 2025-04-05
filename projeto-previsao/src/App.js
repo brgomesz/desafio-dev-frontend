@@ -3,17 +3,10 @@ import "./App.css";
 import ComponentePrevisao from "./components/ComponentePrevisao/ComponentePrevisao";
 
 function App() {
+  const [backgroundClass, setBackgroundClass] = useState("ensolarado");
   return (
-    <div
-      style={{
-        backgroundColor: "#dfe985",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        // alignItems: "center",
-      }}
-    >
-      <ComponentePrevisao/>
+    <div className={`fundo-componente ${backgroundClass}`}>
+      <ComponentePrevisao setBackgroundClass={setBackgroundClass} />
     </div>
   );
 }

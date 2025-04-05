@@ -4,11 +4,15 @@
   background: linear-gradient(to top, #0080ff, #c3e3ff); 
   border-radius: 22px;
   margin-top: 1%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .card-previsao h1 {
+  font-size: 23px;
   text-align: center;
   margin-top: 10%;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .input-cidade input {
@@ -113,7 +117,9 @@
   justify-content: space-between;
   margin-top: 30px;
   width: 90%;
-  color:#ffff
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  
 }
 .horarios {
   display: flex;
@@ -121,6 +127,8 @@
   padding: 5px 15px;
   border-radius: 10px;
   width: 90%;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);  
 }
 .informacoes-complementares {
   width: 70%;
@@ -131,6 +139,7 @@
   padding: 20px 10px;
   border-radius: 15px;
   margin-top: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .autocomplete{
@@ -154,9 +163,11 @@
     margin-top: 20%;
   }
   .card-previsao h1 {
-    font-size: 20px;
+    font-size: 23px;
     text-align: center;
     margin-top: 10%;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   .input-cidade input {
     height: 25px;
@@ -259,6 +270,9 @@
     justify-content: space-between;
     margin-top: 30px;
     width: 90%;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    
   }
   .horarios {
     display: flex;
@@ -266,6 +280,8 @@
     padding: 5px 15px;
     border-radius: 10px;
     width: 90%;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);  
   }
   .informacoes-complementares {
     width: 70%;
@@ -276,6 +292,7 @@
     padding: 20px 10px;
     border-radius: 15px;
     margin-top: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .temperaturas{
