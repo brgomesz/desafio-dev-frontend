@@ -15,6 +15,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import CidadesSugeridas from "../CidadesSugeridas/CidadesSugeridas";
 
 function ComponentePrevisao({ setBackgroundClass }) {
   const [cidade, setCidade] = useState("");
@@ -28,7 +29,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
   const [informacoesBackground, setInformacoesBackground] = useState({
     backgroundColor: "rgb(130, 167, 247)",
   });
-
+  const [mostrarSugestoes, setMostrarSugestoes] = useState(true);
 
   const buscarSugestoes = async (input) => {
     if (!input) {
@@ -39,6 +40,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log("Dados retornados da API:", data);
       const cidadesUnicas = data.geonames.filter(
         (cidade, index, self) =>
           index ===
@@ -70,10 +72,13 @@ function ComponentePrevisao({ setBackgroundClass }) {
     }
   };
 
-  const buscarClima = async () => {
-    if (!cidade) return;
+  const buscarClima = async (cidadeSelecionada = cidade) => {
+    if (!cidadeSelecionada) return;
+    setMostrarSugestoes(false);
+
     const apiKey = "b0a67d1ae4e55e99a910ea4120918e5b";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidadeSelecionada}&units=metric&appid=${apiKey}`;
+
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -115,7 +120,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
         setInformacoesBackground({ backgroundColor: "rgb(130, 167, 247)" });
       }
     } catch (error) {
-      console.error(error.message);
+      console.error("Erro na busca dos dados climáticos:", error.message);
       alert("Erro ao buscar dados: " + error.message);
     }
   };
@@ -135,10 +140,13 @@ function ComponentePrevisao({ setBackgroundClass }) {
     return <CloudIcon style={{ color: "gray", fontSize: 50 }} />;
   };
 
+
   const selecionarCidade = (nome) => {
     setCidade(nome);
-    setSugestoes([]);
-    setDropdownVisivel(false);
+    setSugestoes([]); 
+    setDropdownVisivel(false); 
+    setMostrarSugestoes(false); 
+    buscarClima(nome);
   };
 
   return (
@@ -199,6 +207,13 @@ function ComponentePrevisao({ setBackgroundClass }) {
           </ul>
         )}
       </div>
+
+      <div className="card-cidades-sugeridas">
+        {mostrarSugestoes && (
+          <CidadesSugeridas onCidadeSelecionada={selecionarCidade} />
+        )}
+      </div>
+
       {dadosClima && (
         <div className="resultados">
           <div className="resultado resultado-cidade">
@@ -225,7 +240,10 @@ function ComponentePrevisao({ setBackgroundClass }) {
               </div>
             </div>
           </div>
-          <div className="informacoes-complementares" style={informacoesBackground}>
+          <div
+            className="informacoes-complementares"
+            style={informacoesBackground}
+          >
             <div className="horarios">
               <div>
                 <WbTwilightIcon
