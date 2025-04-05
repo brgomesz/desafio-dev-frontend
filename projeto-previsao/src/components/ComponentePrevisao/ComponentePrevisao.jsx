@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./ComponentePrevisao.css";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import WbTwilightIcon from "@mui/icons-material/WbTwilight";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
 import AirRoundedIcon from "@mui/icons-material/AirRounded";
@@ -51,24 +49,6 @@ function ComponentePrevisao({ setBackgroundClass }) {
       setSugestoes(cidadesUnicas);
     } catch (error) {
       console.error("Erro ao buscar sugestões:", error.message);
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (dropdownVisivel && sugestoes.length > 0) {
-      if (e.key === "ArrowDown") {
-        setIndiceSelecionado((prev) =>
-          Math.min(prev + 1, sugestoes.length - 1)
-        );
-      } else if (e.key === "ArrowUp") {
-        setIndiceSelecionado((prev) => Math.max(prev - 1, 0));
-      } else if (e.key === "Enter") {
-        if (sugestoes[indiceSelecionado]) {
-          setCidade(sugestoes[indiceSelecionado].name);
-          setSugestoes([]);
-          setDropdownVisivel(false);
-        }
-      }
     }
   };
 
@@ -160,18 +140,17 @@ function ComponentePrevisao({ setBackgroundClass }) {
             setCidade(newValue);
           }}
           onInputChange={(event, newInputValue) => {
-            setCidade(newInputValue || ""); 
-            if (newInputValue?.trim() !== "") buscarSugestoes(newInputValue.trim()); // Normaliza entrada
+            setCidade(newInputValue || "");
+            if (newInputValue?.trim() !== "")
+              buscarSugestoes(newInputValue.trim());
           }}
-          
-          
           renderInput={(params) => (
             <TextField
               className="input-autocomplete"
               {...params}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && cidade.trim() !== "") {
-                  e.preventDefault(); 
+                  e.preventDefault();
                   buscarClima();
                   setSugestoes([]);
                 }
@@ -189,7 +168,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
               setSugestoes([]);
             }
           }}
-          data-testid="botao-buscar" 
+          data-testid="botao-buscar"
         >
           <SearchRoundedIcon />
         </Button>

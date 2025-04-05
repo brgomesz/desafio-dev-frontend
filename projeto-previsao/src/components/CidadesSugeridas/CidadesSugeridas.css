@@ -29,7 +29,6 @@
   gap: 0px;
   flex-direction: column;
   padding-left: 20px;
-  
 }
 
 .resultado-sugeridas-max {
@@ -49,24 +48,24 @@
 
 .sugeridas {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   padding-right: 30px;
   margin-top: -20px;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.temperatura-principal-sugeridas{
-    font-size: 33px;    
+.temperatura-principal-sugeridas {
+  font-size: 33px;
 }
 
 @media (max-width: 568px) {
-    .sugeridas {
-        display: flex;
-        justify-content: flex-end; 
-        padding-right: 30px;
-        margin-top: -10px;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-      }
+  .sugeridas {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    margin-top: -10px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
 }
