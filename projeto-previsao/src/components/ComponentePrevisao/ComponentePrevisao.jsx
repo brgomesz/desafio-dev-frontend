@@ -176,12 +176,26 @@ function ComponentePrevisao({ setBackgroundClass }) {
         {dropdownVisivel && sugestoes.length > 0 && (
           <ul className="dropdown">
             {sugestoes.map((sugestao, index) => (
+              // <li
+              //   key={sugestao.geonameId}
+              //   className={
+              //     indiceSelecionado === index ? "sugestao-selecionada" : ""
+              //   }
+              //   onClick={() => selecionarCidade(sugestao.name)}
+              // >
+              //   {sugestao.name}, {sugestao.countryName}
+              // </li>
+
+              // <li
+              //   key={sugestao.geonameId}
+              //   onClick={() => selecionarCidade(sugestao.name)}
+              // >
+              //   {sugestao.name}, {sugestao.countryName}
+              // </li>
+
               <li
                 key={sugestao.geonameId}
-                className={
-                  indiceSelecionado === index ? "sugestao-selecionada" : ""
-                }
-                onClick={() => selecionarCidade(sugestao.name)}
+                onTouchStart={() => selecionarCidade(sugestao.name)} 
               >
                 {sugestao.name}, {sugestao.countryName}
               </li>
