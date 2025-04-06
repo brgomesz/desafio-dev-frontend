@@ -34,7 +34,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
       setSugestoes([]);
       return;
     }
-    const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
+    const url = `https://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
     try {
       const response = await fetch(url);
       const data = await response.json();
