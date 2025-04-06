@@ -128,7 +128,7 @@ A organização do código segue uma estrutura modular, com os componentes princ
    cd projeto-previsao
    npm install
    Chave da API do OpenWeatherMap: b0a67d1ae4e55e99a910ea4120918e5b
-   Chave do Geonames: anatridade
+   Chave do Geonames: brunogomes
    npm start
 
 ## 5. API's externas

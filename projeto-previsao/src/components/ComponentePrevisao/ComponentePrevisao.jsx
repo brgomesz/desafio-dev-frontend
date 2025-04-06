@@ -34,11 +34,10 @@ function ComponentePrevisao({ setBackgroundClass }) {
       setSugestoes([]);
       return;
     }
-    const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=anatrindade`;
+    const url = `http://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log("Dados retornados da API:", data);
       const cidadesUnicas = data.geonames.filter(
         (cidade, index, self) =>
           index ===
@@ -130,7 +129,7 @@ function ComponentePrevisao({ setBackgroundClass }) {
 
   return (
     <div className="card-previsao" style={cardBackground}>
-      <h1>Digite o nome da cidade</h1>
+      <h1>Confira o clima na região</h1>
       <div className="input-cidade">
         <Autocomplete
           className="autocomplete"
@@ -147,11 +146,11 @@ function ComponentePrevisao({ setBackgroundClass }) {
           renderInput={(params) => (
             <TextField
               className="input-autocomplete"
+              placeholder="Digite o nome da cidade"
               {...params}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && cidade.trim() !== "") {
                   e.preventDefault();
-                  buscarClima();
                   setSugestoes([]);
                 }
               }}
