@@ -34,9 +34,12 @@ function ComponentePrevisao({ setBackgroundClass }) {
       setSugestoes([]);
       return;
     }
-    const url = `https://api.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
+    const url = `https://secure.geonames.org/searchJSON?q=${input}&maxRows=10&username=brunogomes`;
     try {
       const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar dados: ${response.statusText}`);
+      }
       const data = await response.json();
       const cidadesUnicas = data.geonames.filter(
         (cidade, index, self) =>
